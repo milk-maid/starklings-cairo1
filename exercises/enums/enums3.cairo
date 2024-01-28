@@ -2,8 +2,6 @@
 // Address all the TODOs to make the tests pass!
 // Execute `starklings hint enums3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 use debug::PrintTrait;
 
 #[derive(Drop, Copy)]
@@ -57,16 +55,10 @@ impl StateImpl of StateTrait {
         ref self: State, message: Message
     ) { // TODO: create a match expression to process the different message variants
        match message{
-        Message::Quit => quit,
-        Message::Echo(self) => self.echo,
-        Message::Move,
-        Message::ChangeColor,
-
-        //   match message {
-        //     Message::ChangeColor(abc) => self.change_color(abc),
-        //     Message::Quit => self.quit(),
-        //     Message::Echo(value) => self.echo(value),
-        //     Message::Move(point) => self.move_position(point),
+        Message::Quit => self.quit(),
+        Message::Echo(value) => self.echo(value),
+        Message::Move(pointer) => self.move_position(pointer),
+        Message::ChangeColor((x, y, z)) => self.change_color((x.try_into().unwrap(), y.try_into().unwrap(), z.try_into().unwrap())),
        }
     }
 }
