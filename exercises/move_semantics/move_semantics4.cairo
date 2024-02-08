@@ -4,7 +4,6 @@
 // function.
 // Execute `starklings hint move_semantics4` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
 use array::ArrayTrait;
 use array::ArrayTCloneImpl;
 use array::SpanTrait;
@@ -14,7 +13,7 @@ use debug::PrintTrait;
 fn main() {
     let arr0 = ArrayTrait::<felt252>::new();
 
-    let mut arr1 = fill_arr(arr0);
+    let mut arr1 = fill_arr(arr0.clone());
 
     arr1.clone().print();
 
