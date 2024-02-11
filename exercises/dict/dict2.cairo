@@ -12,8 +12,11 @@ use core::traits::TryInto;
 fn multiply_element_by_10(ref dict: Felt252Dict<u32>, n: usize) {
     //TODO : make a function that multiplies the elements stored at the indexes 0 to n of a dictionary by 10
 
-    let mut index: felt252 = 0; let mut i = 0;
+    ///*//////////////////////////////////////////////////////////
+                     //USING LOOP the recursion style
+    ////////////////////////////////////////////////////////////*/
 
+    let mut index: felt252 = 0; let mut i = 0;
     loop {
         if i > n {
             break;
@@ -22,6 +25,19 @@ fn multiply_element_by_10(ref dict: Felt252Dict<u32>, n: usize) {
         i += 1; index += 1;
     }
 
+    ///*//////////////////////////////////////////////////////////
+                            //USING WHILE LOOP (not working???)
+    ////////////////////////////////////////////////////////////*/
+
+    // let mut index: felt252 = 0; let mut i = 0;
+    // while i <= n {
+    //     dict.insert(index, dict.get(index) * 10);
+    //     index += 1; i += 1;
+    // }
+
+    ///*//////////////////////////////////////////////////////////
+            //INITIAL TRIALS gained more insights  loop and while
+    ////////////////////////////////////////////////////////////*/
     // let mut index = 0;
     // loop {
     //     if index > n {
@@ -38,8 +54,9 @@ fn multiply_element_by_10(ref dict: Felt252Dict<u32>, n: usize) {
     //     index += 1;
     // }
 
-
-
+    ///*//////////////////////////////////////////////////////////
+                //wrong question interpretation !out of scope!!!
+    ////////////////////////////////////////////////////////////*/
     // let mut i = 0;
     // let mut product = 0;
     // while i <= n {
