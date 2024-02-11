@@ -36,6 +36,9 @@ impl TeamImpl of TeamTrait {
         //TODO
         let current_level = self.level.get(name);
         self.level.insert(name, current_level + 1);
+
+        // a shorter way
+        // self.level.insert(name, self.level.get(name) + 1);
     }
 
     fn players_count(self: @Team) -> usize {
