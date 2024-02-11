@@ -13,8 +13,6 @@
 // No hints for this one!
 // Execute `starklings hint traits2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 #[derive(Copy, Drop)]
 struct Cat {
     noise: felt252, 
@@ -31,6 +29,25 @@ trait AnimalTrait<T> {
 }
 
 impl CatImpl of AnimalTrait<Cat> { // TODO: implement the trait Animal for the type Cat
+    fn new() -> Cat {
+        let cat = Cat {noise: 'meow'};
+        cat
+    }
+
+    fn make_noise(self: Cat) -> felt252 {
+        self.noise
+    }
+}
+
+impl CowImpl of AnimalTrait<Cow> { // TODO: implement the trait Animal for the type Cat
+    fn new() -> Cow {
+        let cow = Cow {noise: 'moo'};
+        cow
+    }
+
+    fn make_noise(self: Cow) -> felt252 {
+        self.noise
+    }
 }
 
 // TODO: implement the trait Animal for the type Cow

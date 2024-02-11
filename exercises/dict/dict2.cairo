@@ -1,3 +1,4 @@
+use core::traits::TryInto;
 // dict2.cairo
 // Dictionaries can be used to simulate dynamic array : the value they store can be accessed and modified.
 // Your task is to create a function that multiplies the elements stored at the indexes 0 to n of a dictionary by 10
@@ -11,6 +12,42 @@
 fn multiply_element_by_10(ref dict: Felt252Dict<u32>, n: usize) {
     //TODO : make a function that multiplies the elements stored at the indexes 0 to n of a dictionary by 10
 
+    let mut index: felt252 = 0; let mut i = 0;
+
+    loop {
+        if i > n {
+            break;
+        }
+        dict.insert(index, dict.get(index) * 10);
+        i += 1; index += 1;
+    }
+
+    // let mut index = 0;
+    // loop {
+    //     if index > n {
+    //         break;
+    //     }
+    //     dict.insert('index', dict.get('index') * 10);
+    //     index += 1;
+    // }
+
+    // let mut index = 0;
+    // while index <= n {
+    //     let value_at_index = dict.get(index);
+    //     dict.insert(index, value_at_index * 10);
+    //     index += 1;
+    // }
+
+
+
+    // let mut i = 0;
+    // let mut product = 0;
+    // while i <= n {
+    //     let value_at_index = dict.get(i)
+    //     product *= value_at_index;
+    //     i += 1;
+    // };
+    // product
 
 }
 
