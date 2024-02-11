@@ -5,8 +5,6 @@ use core::traits::TryInto;
 // Make me compile and pass the test!
 // Execute `starklings hint dict2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 
 
 fn multiply_element_by_10(ref dict: Felt252Dict<u32>, n: usize) {
