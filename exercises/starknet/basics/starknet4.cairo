@@ -41,20 +41,27 @@ mod LizInventory {
             // * takes product and new_stock
             // * adds new_stock to stock in inventory
             // * only owner can call this
-            
+            assert(get_caller_address() == self.contract_owner.read(), 'Watch Out! NOT ALLOWED');
+            self.inventory.write(product, (self.inventory.read(product) + new_stock))
         }
 
-        fn purchase(ref self: ContractState, ) {
+        fn purchase(ref self: ContractState,  product: felt252, quantity: u32) {
             // TODO:
             // * takes product and quantity
             // * subtracts quantity from stock in inventory
             // * anybody can call this
+            // ////////////////////some trials
+            // let stock_value = self.inventory.read(product);
+            // let updated_value = stock_value - quantity;
+            // self.inventory.write(product, updated_value);
+            self.inventory.write(product, (self.inventory.read(product) - quantity))
         }
 
-        fn get_stock(self: @ContractState, ) -> u32 {
+        fn get_stock(self: @ContractState, product: felt252) -> u32 {
             // TODO:
             // * takes product
             // * returns product stock in inventory
+            self.inventory.read(product)
         }
 
         fn get_owner(self: @ContractState) -> ContractAddress {

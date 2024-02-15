@@ -41,9 +41,13 @@ mod ProgressTracker {
             // TODO: assert owner is calling
             let owner: ContractAddress = self.contract_owner.read();
             let caller: ContractAddress = get_caller_address();
+            
             assert(!caller.is_zero(), 'Error, ZERO ADDRESS here');
-            assert(caller == owner, 'result is not 4');
+
+            assert(caller == owner, 'NOT ALLOWED');
+
             assert(self.contract_owner.read() == get_caller_address(), 'Watch Out! NOT ALLOWED');
+
             assert(get_caller_address() == self.contract_owner.read(), 'Watch Out! NOT ALLOWED');
             // TODO: set new_progress for user,
             self.progress.write(user, new_progress)
