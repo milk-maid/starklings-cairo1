@@ -5,8 +5,6 @@
 // only the owner to update the contract, they agree.
 // Can you help them write this contract?
 
-// I AM NOT DONE
-
 use starknet::ContractAddress;
 
 #[starknet::interface]
@@ -18,6 +16,7 @@ trait IProgressTracker<TContractState> {
 
 #[starknet::contract]
 mod ProgressTracker {
+    // use starknet3::starknet3::IProgressTracker;
     use starknet::ContractAddress;
     use starknet::get_caller_address; // Required to use get_caller_address function
 
@@ -25,7 +24,7 @@ mod ProgressTracker {
     struct Storage {
         contract_owner: ContractAddress,
         // TODO: Set types for LegacyMap
-        progress: LegacyMap<>
+        progress: LegacyMap<ContractAddress, u16>
     }
 
     #[constructor]
@@ -38,11 +37,20 @@ mod ProgressTracker {
     impl ProgressTrackerImpl of super::IProgressTracker<ContractState> {
         fn set_progress(
             ref self: ContractState, user: ContractAddress, new_progress: u16
-        ) { // TODO: assert owner is calling
-        // TODO: set new_progress for user,
+        ) { 
+            // TODO: assert owner is calling
+            let owner: ContractAddress = self.contract_owner.read();
+            let caller: ContractAddress = get_caller_address();
+            assert(!caller.is_zero(), 'Error, ZERO ADDRESS here');
+            assert(caller == owner, 'result is not 4');
+            assert(self.contract_owner.read() == get_caller_address(), 'Watch Out! NOT ALLOWED');
+            assert(get_caller_address() == self.contract_owner.read(), 'Watch Out! NOT ALLOWED');
+            // TODO: set new_progress for user,
+            self.progress.write(user, new_progress)
         }
 
         fn get_progress(self: @ContractState, user: ContractAddress) -> u16 { // Get user progress
+            self.progress.read(user)
         }
 
         fn get_contract_owner(self: @ContractState) -> ContractAddress {
